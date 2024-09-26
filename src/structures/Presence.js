@@ -650,7 +650,7 @@ class CustomStatus extends Activity {
   constructor(client, data = {}) {
     if (!client) throw new Error("Class constructor CustomStatus cannot be invoked without 'client'");
     super('presence' in client ? client.presence : client, {
-      name: ' ',
+      name: 'Custom Status',
       type: ActivityTypes.CUSTOM,
       ...data,
     });

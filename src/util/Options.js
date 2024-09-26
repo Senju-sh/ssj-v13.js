@@ -171,7 +171,7 @@ class Options extends null {
       restTimeOffset: 500,
       restSweepInterval: 60,
       failIfNotExists: true,
-      presence: { status: 'dnd', since: 0, activities: [], afk: true },
+      presence: { status: 'online', since: 0, activities: [], afk: true },
       sweepers: {},
       ws: {
         capabilities: 0, // https://discord-userdoccers.vercel.app/topics/gateway#gateway-capabilities
@@ -179,7 +179,7 @@ class Options extends null {
           os: 'Windows',
           browser: 'Chrome',
           device: '',
-          system_locale: 'en-US',
+          system_locale: 'vi-VN',
           browser_user_agent: UserAgent,
           browser_version: '108.0.5359.215',
           os_version: '10',
@@ -301,7 +301,7 @@ class Options extends null {
    */
   static get defaultMakeCacheSettings() {
     return {
-      MessageManager: 5,
+      MessageManager: 200,
       ChannelManager: {
         sweepInterval: 3600,
         sweepFilter: require('./Util').archivedThreadSweepFilter(),

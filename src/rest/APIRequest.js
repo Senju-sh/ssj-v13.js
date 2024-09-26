@@ -97,7 +97,7 @@ class APIRequest {
 
     // Delete all headers if undefined
     for (const [key, value] of Object.entries(headers)) {
-      if (value === undefined || value === null) delete headers[key];
+      if (value === undefined) delete headers[key];
     }
     if (this.options.webhook === true) {
       headers = {
@@ -146,16 +146,6 @@ class APIRequest {
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), this.client.options.restRequestTimeout).unref();
-    if (this.method == "patch") {
-      body = JSON.parse(body)
-      for (const key in body) {
-
-        if (body[key] == null || Array.isArray(body[key]) && body[key].length == 0) {
-          delete body[key];
-        }
-      }
-      body = JSON.stringify(body)
-    }
     return fetch(url, {
       method: this.method,
       headers,

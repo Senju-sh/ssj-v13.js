@@ -168,7 +168,7 @@ import {
 
 //#region Classes
 
-// RPC
+// RPC by aiko-chan-ai
 export interface RichButton {
   name: string;
   url: string;

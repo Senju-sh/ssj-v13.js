@@ -1528,39 +1528,24 @@ class Guild extends AnonymousGuild {
    * Set the vanity URL to this guild.
    * Resolves with an object containing the vanity URL invite code and the use count.
    * @param {string} [code=''] Vanity URL code
-   * @param {string} [mfa_type=''] Vanity Auth Method
-   * @param {string} [data= ''] Vanity MFA Code
    * @returns {Promise<Vanity>}
    * @example
    * // Set invite code
-   * guild.setVanityCode('senju')
+   * guild.setVanityCode('elysia')
    *   .then(res => {
    *     console.log(`Vanity URL: https://discord.gg/${res.code} with ${res.uses} uses`);
    *   })
    *   .catch(console.error);
    */
-  async setVanityCode(code = '', mfa_type = '', data = '') {
+  async setVanityCode(code = '') {
     if (typeof code !== 'string') throw new TypeError('INVALID_VANITY_URL_CODE');
-    if (typeof mfa_type !== 'string') throw new TypeError('INVALID_MFA_TYPE');
-    if (typeof data !== 'string') throw new TypeError('INVALID_MFA_DATA');
+    const data = await this.client.api.guilds(this.id, 'vanity-url').patch({
+      data: { code },
+    });
+    this.vanityURLCode = data.code;
+    this.vanityURLUses = data.uses;
 
-    try {
-      const value = await this.client.api.guilds(this.id, 'vanity-url').patch({
-        data: {
-          code,
-          mfa_type,
-          data
-        }
-      });
-
-      this.vanityURLCode = value.code;
-      this.vanityURLUses = value.uses;
-  
-      return value;
-    } catch (error) {
-      console.error('Failed to set vanity URL:', error);
-      throw new Error('Unable to set vanity URL.');
-    }
+    return data;
   }
 
   /**

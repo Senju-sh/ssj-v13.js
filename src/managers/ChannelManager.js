@@ -118,17 +118,16 @@ class ChannelManager extends CachedManager {
 
   /**
    * Create Group DM
-   * @param {UserResolvable[]} [recipients=[]] Array of recipients
+   * @param {UserResolvable[]} recipients Array of recipients
    * @returns {Promise<GroupDMChannel>} Channel
-   * @example
-   * client.channels.createGroupDM();
    */
-  async createGroupDM(recipients = []) {
+  async createGroupDM(recipients) {
+    // Check
     if (!Array.isArray(recipients)) throw new Error(`Expected an array of recipients (got ${typeof recipients})`);
     recipients = recipients
       .map(r => this.client.users.resolveId(r))
       .filter(r => r && this.client.relationships.cache.get(r) == RelationshipTypes.FRIEND);
-    if (recipients.length > 9) throw new Error('Invalid Users length (max=9)');
+    if (recipients.length < 2 || recipients.length > 9) throw new Error('Invalid Users length (2 - 9)');
     const data = await this.client.api.users['@me'].channels.post({
       data: { recipients },
     });

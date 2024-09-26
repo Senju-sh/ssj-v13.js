@@ -203,6 +203,7 @@ class ClientUser extends User {
    * @example
    * // Set the client user's presence
    * client.user.setPresence({ activities: [{ name: 'with discord.js' }], status: 'idle' });
+   * @see {@link https://github.com/aiko-chan-ai/discord.js-selfbot-v13/blob/main/Document/RichPresence.md}
    */
   setPresence(data) {
     return this.client.presence.set(data);
