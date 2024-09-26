@@ -1,7 +1,7 @@
 {
   "name": "ssj-v13.js",
-  "version": "1.0.0",
-  "description": "Unofficial discord js module for selfbots in v13",
+  "version": "1.0.1",
+  "description": "Unofficial discord js package for selfbots",
   "main": "./src/index.js",
   "types": "./typings/index.d.ts",
   "scripts": {
@@ -42,14 +42,10 @@
     "node",
     "discord",
     "client",
-    "discordapp",
-    "speed"
+    "discordapp"
   ],
-  "author": "senju-sh",
+  "author": "senju",
   "license": "GNU General Public License v3.0",
-  "bugs": {
-    "url": "https://github.com/senju-sh/ssj-v13.js/issues"
-  },
   "homepage": "https://github.com/senju-sh/ssj-v13.js#readme",
   "dependencies": {
     "@discordjs/builders": "^1.6.3",
